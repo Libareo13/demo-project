@@ -1,9 +1,11 @@
+# main.py
 import random
 from hero import Hero
 from monster import Monster
 import functions
 import os
 import platform
+
 print(f"Operating System: {os.name}")
 print(f"Python Version: {platform.python_version()}")
 
@@ -80,8 +82,6 @@ weapon_roll = random.choice(small_dice_options)
 combat_strength = min(6, (int(combat_strength) + weapon_roll))
 print("    |    The hero\'s weapon is " + str(weapons[weapon_roll - 1]))
 
-
-
 # Adjust combat strength and initializing it
 hero.combat_strength, monster.combat_strength = functions.adjust_combat_strength(hero.combat_strength, monster.combat_strength)
 
@@ -104,6 +104,33 @@ input("Roll for Monster's Magic Power (Press enter)")
 power_roll = random.choice(list(monster_powers.keys()))
 monster.combat_strength = min(6, monster.combat_strength + monster_powers[power_roll])
 print(f"Monster's combat strength is now {monster.combat_strength} using {power_roll}")
+
+# Treasure Hunt Feature Initialization
+grid_size = 5
+map_grid, treasures = functions.generate_treasure_map(grid_size)
+hero_location = (2, 2)  # Starting location
+map_grid[hero_location[0]][hero_location[1]] = "Hero"
+inventory = {"Keys": 1, "Treasures Collected": 0, "Health": hero.health_points, "Energy": 50}
+
+# Treasure Hunt Gameplay Loop
+print("    |    Treasure Hunt Begins!")
+for row in map_grid:
+    print("    |    ",row) #print the map
+
+while True:
+    direction = input("    |    Enter direction (North, South, East, West, exit): ").strip().capitalize()
+    if direction == "Exit":
+        break
+    hero_location = functions.move_hero(hero_location, direction, grid_size)
+    map_grid[hero_location[0]][hero_location[1]] = "Hero"
+    inventory, map_grid = functions.interact_with_treasure(hero_location, map_grid, inventory)
+    inventory["Health"] = hero.health_points #sync health
+    hero.health_points = inventory["Health"]
+    for row in map_grid:
+        print("    |    ",row) #print the map.
+    print(f"    |    Inventory: {inventory}")
+
+print("    |    Treasure Hunt Over.")
 
 # Fight Sequence
 # Loop while the monster and the player are alive. Call fight sequence functions
