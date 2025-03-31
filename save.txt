@@ -32,3 +32,7 @@ Hero Hero has killed a monster and gained 3 stars.
 Total monsters killed: 33
 Hero lll has killed a monster and gained 3 stars.
 Total monsters killed: 34
+Hero sss has killed a monster and gained 3 stars.
+Total monsters killed: 35
+Hero sss has killed a monster and gained 3 stars.
+Total monsters killed: 36
