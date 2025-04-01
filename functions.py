@@ -1,3 +1,4 @@
+# functions.py
 import random
 import os
 
@@ -16,7 +17,6 @@ def use_loot(belt, health_points):
     else:
         print("    |    You used " + first_item + " but it's not helpful")
     return belt, health_points
-
 
 def collect_loot(loot_options, belt):
     print("    |    !!You find a loot bag!! You look inside to find 2 items:")
@@ -45,17 +45,6 @@ def monster_attacks(m_combat_strength, health_points):
         health_points -= m_combat_strength
         print("    |    The monster has reduced Player's health to: " + str(health_points))
     return health_points
-
-def inception_dream(num_dream_lvls):
-    num_dream_lvls = int(num_dream_lvls)
-    if num_dream_lvls == 1:
-        print("    |    You are in the deepest dream level now")
-        print("    |", end="    ")
-        input("Start to go back to real life? (Press Enter)")
-        print("    |    You start to regress back through your dreams to real life.")
-        return 2
-    else:
-        return 1 + int(inception_dream(num_dream_lvls - 1))
 
 def save_game(winner, hero_name="", num_stars=0):
     monster_kills = 0
