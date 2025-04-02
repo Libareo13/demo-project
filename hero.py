@@ -1,12 +1,13 @@
-# hero.py
 import random
 from character import Character
 
 class Hero(Character):
     def __init__(self):
+        # Call parent constructor to initialize combat_strength and health_points
         super().__init__()
-        self._combat_strength = random.randint(5, 20)
-        self._health_points = random.randint(50, 100)
+        # Roll dice for combat strength and health points
+        self._combat_strength = random.randint(5, 20)  # Combat strength between 5 and 20
+        self._health_points = random.randint(50, 100)  # Health points between 50 and 100
         print(f"    |    Hero's initial combat strength: {self._combat_strength}")
         print(f"    |    Hero's initial health points: {self._health_points}")
 
@@ -31,6 +32,7 @@ class Hero(Character):
         self._health_points = value
 
     def __del__(self):
+        # Destructor
         print("    |    The Hero object is being destroyed by the garbage collector")
 
     def hero_attacks(self, monster):
